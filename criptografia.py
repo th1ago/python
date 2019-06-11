@@ -33,10 +33,12 @@ if modo == 'd':
   print('O texto decriptado é ', convertido)
   dados["decifrado"] = convertido
 
+#  resumo criptografico usando o algoritmo sha1
+texto_to_hash = dados["decifrado"]
+hash_object = hashlib.sha256(str(texto_to_hash).encode('utf-8'))
+print('Hash', hash_object.hexdigest())
+dados["resumo"] = hash_object.hexdigest()
+  
 # alterando o arquivo .json
 with open('answer.json',"w") as fp:
   json.dump(dados, fp)
-
-# enviando o arquivo
-resposta = requests.post('url', file_json=dados)
-print(resposta.txt)
